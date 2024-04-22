@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css"> </head>
-<body style="background-image: url('images/login background.jpg'); background-size: cover;">
+  <link rel="stylesheet" href=" {% static 'student/css/style.css' %} "> </head>
+<body style="background-image: url('{% static 'student/images/login background.jpg' %}'); background-size: cover;">
 
   <section class="form-container">
     <form action="" method="post" enctype="multipart/form-data">
@@ -24,6 +26,6 @@
   <footer class="footer">
     &copy; copyright @ 2024 by <span>Mo'men Ali wlso7ba Alkrma</span> | all rights reserved!
   </footer>
-  <script src="js/script.js"></script>
+  <script src=" {% static 'student/js/script.js' %} "></script>
 </body>
 </html>
