@@ -1,0 +1,98 @@
+@startuml
+
+skinparam linetype ortho
+
+Entity Userinfo {
+    id: int <<pk>>
+    email: varchar UNIQUE
+    fname: varchar
+    lname: varchar
+    BoB: varchar
+    gender: boolean
+    password: varchar UNIQUE
+}
+
+Entity Student {
+    student_id: int <<pk>> <<fk>>
+    major_id: int
+    cgpa: varchar
+}
+
+Entity Instructor {
+    instructor_id: int <<pk>> <<fk>>
+}
+
+Entity Ticket {
+    ticket_id: int <<pk>> <<fk>>
+    user_id: int <<fk>>
+    ticket_content: varchar
+}
+
+Entity Semester {
+    semester_id: int <<pk>>
+    semester_type: enum {Summer, Fall, Spring}
+    semester_year: varchar
+}
+
+Entity Enrollment {
+    student_id: int <<pk>> <<fk>>
+    course_id: int <<pk>> <<fk>>
+    semester_id: int <<pk>> <<fk>>
+    instructor_id: int <<pk>> <<fk>>
+    classword_marks: int
+    homework_marks: int
+    midterm_mark: int
+    final_mark: int
+    gpa: varchar
+}
+
+Entity Faculty {
+    faculty_id: int <<pk>>
+    faculty_name: varchar
+}
+
+Entity Major {
+    major_id: int <<pk>>
+    major_name: varchar
+    degree: varchar
+    faculty_id: int NOT NULL <<fk>
+
+}
+
+Entity Timeslot {
+    time_slot_id: int <<pk>>
+    room_id: int <<pk>> <<fk>>
+    course_id: int <<fk>>
+
+}
+
+Entity Room {
+    room_id: int <<pk>>
+    room_name: varchar
+
+}
+
+Entity Course {
+    course_id: int <<pk>>
+    course_title: varchar
+    course_description: varchar
+    credit_hours: int
+    mandatory: boolean
+    faculty_id: int <<fk>>
+
+}
+
+Userinfo ||--|| Instructor
+Userinfo ||--|| Student
+Userinfo ||--o{ Ticket
+Major ||--o{ Student
+Major ||--|{ Faculty
+Enrollment }o---o{ Instructor
+Enrollment }o---|| Student
+Enrollment }o---|| Course
+Enrollment }o---|| Semester
+Course }o---|| Faculty
+Timeslot }o---|| Room
+Timeslot }o---|| Course
+
+@enduml
