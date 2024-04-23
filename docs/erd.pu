@@ -4,18 +4,18 @@ skinparam linetype ortho
 
 Entity Userinfo {
     id: int <<pk>>
-    email: varchar UNIQUE
-    fname: varchar
-    lname: varchar
-    BoB: varchar
-    gender: boolean
-    password: varchar UNIQUE
+    username: varchar UNIQUE
+    first_name: varchar
+    last_name: varchar
+    date_of_birth: datetime
+    gender: enum {'M', 'F'}
+    password: varchar
 }
 
 Entity Student {
     student_id: int <<pk>> <<fk>>
     major_id: int
-    cgpa: varchar
+    cgpa: float
 }
 
 Entity Instructor {
