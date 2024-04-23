@@ -1,15 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout as auth_logout
 from django.shortcuts import render, redirect, reverse
+from .forms import *
 
 @login_required(login_url='student:login')
 def index(req):
-    return render(req, 'student/home.html', {})
-
-def login(req):
-    if req.method == 'GET':
-        return render(req, 'student/login.html', {})
-
+    return render(req, 'student/home.html', {'user': req.user.student })
 
 def logout(req):
     auth_logout(req)

@@ -9,15 +9,15 @@
       <div style="display: flex; justify-content: space-between;">
          <div>  
             <span style="font-weight:bold;">Student Name: </span>
-            <span>Mo'men Ali Mohamed Amin</span>
+            <span>{{ user.userinfo.first_name }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">Faculty: </span>
-            <span>Computer Science and Information Technology Programs</span>
+            <span>{{ user.major.faculty }} </span>
             <br>
             <br>
             <span style="font-weight:bold;">Student Major: </span>
-            <span>B.Sc. Computer Science</span>
+            <span>{{ user.major }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">Enrollment Status: </span>
@@ -30,7 +30,7 @@
          
          <div> 
             <span style="font-weight:bold;">Student ID: </span>
-            <span>320210310</span>
+            <span> {{ user.userinfo.username }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">Degree: </span>
@@ -46,7 +46,7 @@
             <br>
             <br>
             <span style="font-weight:bold;">CGPA: </span>
-            <span>3</span>
+            <span> {{ user.cgpa }} </span>
          </div>
       </div>
    </p>

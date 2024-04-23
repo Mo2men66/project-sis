@@ -1,10 +1,11 @@
+from django.contrib.auth.views import LoginView
 from django.urls import path
 from . import views
 
 app_name = 'student'
 urlpatterns = [
         path('', views.index, name='index'),
-        path('login', views.login, name='login'),
+        path('login', LoginView.as_view(template_name='student/login.html'), name='login'),
         path('logout', views.logout, name='logout'),
         path('calender', views.calender, name='calender'),
         path('attendence/view', views.view_attendance, name='view_attendence'),
