@@ -86,7 +86,7 @@ Userinfo ||--|| Instructor
 Userinfo ||--|| Student
 Userinfo ||--o{ Ticket
 Major ||--o{ Student
-Major ||--|{ Faculty
+Major ||--|| Faculty
 Enrollment }o---o{ Instructor
 Enrollment }o---|| Student
 Enrollment }o---|| Course
