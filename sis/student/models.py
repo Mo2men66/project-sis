@@ -7,6 +7,18 @@ class Student(models.Model):
     level = models.SmallIntegerField(default=1)
     enrolled = models.BooleanField(default=True)
 
+    def get_academic_status(self):
+        if self.cgpa > 3.7:
+            return 'Excellence'
+        elif self.cgpa > 3.0:
+            return 'Very Good'
+        elif self.cgpa > 2.3:
+            return 'Good'
+        elif self.cgpa > 1.7:
+            return 'Pass'
+        else:
+            return 'Fail'
+
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey('command.Course', on_delete=models.CASCADE)
