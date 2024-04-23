@@ -29,6 +29,7 @@ class Course(models.Model):
     credit_hours = models.IntegerField()
     mandatory = models.BooleanField()
     faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
+    prerequisites = models.ManyToManyField('command.Course')
     
     def __str__(self):
         return self.title
