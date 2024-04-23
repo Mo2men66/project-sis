@@ -4,6 +4,8 @@ class Student(models.Model):
     userinfo = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='student')
     cgpa = models.FloatField()
     major = models.OneToOneField('command.Major', on_delete=models.SET_NULL, null=True)
+    level = models.SmallIntegerField(default=1)
+    enrolled = models.BooleanField(default=True)
 
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
