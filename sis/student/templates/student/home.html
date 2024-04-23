@@ -21,7 +21,7 @@
             <br>
             <br>
             <span style="font-weight:bold;">Enrollment Status: </span>
-            <span>Enrolled</span>
+            <span> {% if not user.enrolled %} Not {% endif %} Enrolled</span>
             <br>
             <br>
             <span style="font-weight:bold;">Total Passed CH: </span>
@@ -34,15 +34,15 @@
             <br>
             <br>
             <span style="font-weight:bold;">Degree: </span>
-            <span>B.Sc</span>
+            <span> {{ user.major.degree }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">Level: </span>
-            <span>Level 3</span>
+            <span>Level {{ user.level }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">Academic Status: </span>
-            <span>Normal</span>
+            <span> {{ user.get_academic_status }}</span>
             <br>
             <br>
             <span style="font-weight:bold;">CGPA: </span>
