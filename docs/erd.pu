@@ -16,6 +16,8 @@ Entity Student {
     student_id: int <<pk>> <<fk>>
     major_id: int
     cgpa: float
+    level: int
+    enrolled: boolean
 }
 
 Entity Instructor {
@@ -79,6 +81,7 @@ Entity Course {
     credit_hours: int
     mandatory: boolean
     faculty_id: int <<fk>>
+    minimum_level: int
 
 }
 
@@ -94,5 +97,7 @@ Enrollment }o---|| Semester
 Course }o---|| Faculty
 Timeslot }o---|| Room
 Timeslot }o---|| Course
+
+Course }o---o{ Course: requires
 
 @enduml
