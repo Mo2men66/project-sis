@@ -41,7 +41,7 @@ Entity Enrollment {
     course_id: int <<pk>> <<fk>>
     semester_id: int <<pk>> <<fk>>
     instructor_id: int <<pk>> <<fk>>
-    classword_marks: int
+    classwork_marks: int
     homework_marks: int
     midterm_mark: int
     final_mark: int
