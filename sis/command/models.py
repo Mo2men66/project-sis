@@ -12,10 +12,16 @@ class Instructor(models.Model):
 class Faculty(models.Model):
     name = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.name
+
 class Major(models.Model):
     faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
     degree = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
 
 class Course(models.Model):
     title = models.CharField(max_length=250)
@@ -23,6 +29,9 @@ class Course(models.Model):
     credit_hours = models.IntegerField()
     mandatory = models.BooleanField()
     faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.title
 
 class Semester(models.Model):
     kind = models.TextField(choices=SEMESTER_TYPE)
