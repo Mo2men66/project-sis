@@ -45,7 +45,13 @@ Entity Enrollment {
     homework_marks: int
     midterm_mark: int
     final_mark: int
+    withdraw: enum {'W', 'F'}
     gpa: varchar
+}
+
+Entity AbsenceInstance {
+    enrollment_id: int <<fk>>
+    date: datetime
 }
 
 Entity Faculty {
@@ -94,6 +100,7 @@ Enrollment }o---o{ Instructor
 Enrollment }o---|| Student
 Enrollment }o---|| Course
 Enrollment }o---|| Semester
+Enrollment ||---o{ AbsenceInstance
 Course }o---|| Faculty
 Timeslot }o---|| Room
 Timeslot }o---|| Course
