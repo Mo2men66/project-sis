@@ -24,6 +24,7 @@ class Enrollment(models.Model):
     course = models.ForeignKey('command.Course', on_delete=models.CASCADE)
     semester = models.ForeignKey('command.Semester', on_delete=models.CASCADE)
     instructor = models.ForeignKey('command.Instructor', on_delete=models.CASCADE)
+    timeslot = models.ForeignKey('command.Timeslot', on_delete=models.CASCADE)
     classwork_marks = models.IntegerField()
     homework_marks = models.IntegerField()
     midterm_mark = models.IntegerField()
