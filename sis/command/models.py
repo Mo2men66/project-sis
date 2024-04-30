@@ -6,6 +6,21 @@ SEMESTER_TYPE = (
         (3, 'Spring'),
 )
 
+TIMESLOTS = (
+        (1, '09:00 - 10:30'),
+        (2, '10:45 - 12:15'),
+        (3, '12:30 - 02:00'),
+        (4, '02:15 - 03:45'),
+)
+
+DAYS = (
+        (1, 'Sun'),
+        (2, 'Mon'),
+        (3, 'Tue'),
+        (4, 'Wed'),
+        (5, 'Thu'),
+)
+
 class Instructor(models.Model):
     userinfo = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='instructor')
 
@@ -38,4 +53,16 @@ class Semester(models.Model):
     kind = models.TextField(choices=SEMESTER_TYPE)
     year = models.DateField()
 
+class Room(models.Model):
+    name = models.CharField(max_length=len('BXX-FXX-XX'))
+
+class Timeslot(models.Model):
+    day = models.TextField(choices=DAYS)
+    timeslot = models.TextField(choices=TIMESLOTS)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.day} {self.timeslot}'
+    
 
