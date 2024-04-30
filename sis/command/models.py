@@ -45,6 +45,7 @@ class Course(models.Model):
     mandatory = models.BooleanField()
     faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
     prerequisites = models.ManyToManyField('command.Course')
+    minimum_level = models.PositiveSmallIntegerField()
     
     def __str__(self):
         return self.title
@@ -65,4 +66,3 @@ class Timeslot(models.Model):
     def __str__(self):
         return f'{self.day} {self.timeslot}'
     
-
