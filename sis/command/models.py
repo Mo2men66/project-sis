@@ -31,7 +31,7 @@ class Faculty(models.Model):
         return self.name
 
 class Major(models.Model):
-    faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
     degree = models.CharField(max_length=250)
 
