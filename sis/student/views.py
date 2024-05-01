@@ -1,7 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout as auth_logout
 from django.shortcuts import render, redirect, reverse
+from django.db.models import Q
+from command.models import *
 from .forms import *
+from .models import *
 
 @login_required(login_url='student:login')
 def index(req):
@@ -13,7 +16,19 @@ def logout(req):
 
 @login_required(login_url='student:login')
 def courses(req):
-    return render(req, 'student/courses.html', {})
+    student = req.user.student
+
+    passed_courses = student.enrollment_set.exclude(semester=Semester.objects.last()).filter(gpa__gte=1.7)
+    passed_courses = map(lambda o: o.course, passed_courses)
+
+    courses = Course.objects.exclude(pk__in=passed_courses).filter(faculty=student.major.faculty,
+                                                                   minimum_level__lte=student.level,
+                                                                   prerequisites__in=passed_courses)
+
+    initial = [{'course': course, 'timeslot': course.timeslot_set.all()} for course in courses]
+    formset = CourseRegisterFormset(req.POST, initial=initial)
+
+    return render(req, 'student/courses.html', {'formset': formset})
 
 @login_required(login_url='student:login')
 def calender(req):
