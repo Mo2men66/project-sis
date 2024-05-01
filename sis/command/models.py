@@ -39,13 +39,15 @@ class Major(models.Model):
         return self.name
 
 class Course(models.Model):
+    code = models.CharField(max_length=6, unique=True)
     title = models.CharField(max_length=250)
     description = models.TextField()
     credit_hours = models.IntegerField()
     mandatory = models.BooleanField()
     faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
     prerequisites = models.ManyToManyField('command.Course')
-    minimum_level = models.PositiveSmallIntegerField()
+    minimum_level = models.PositiveSmallIntegerField(default=1)
+    available = models.BooleanField(default=False)
     
     def __str__(self):
         return self.title
@@ -60,7 +62,7 @@ class Room(models.Model):
 class Timeslot(models.Model):
     day = models.TextField(choices=DAYS)
     timeslot = models.TextField(choices=TIMESLOTS)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, to_field='code')
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
