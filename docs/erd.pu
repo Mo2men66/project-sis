@@ -36,11 +36,15 @@ Entity Semester {
     semester_year: varchar
 }
 
+Entity Offering {
+    course_id: int <<pk>> <<fk>>
+    instructor_id: int <<pk>> <<fk>>
+    semester_id: int <<pk>> <<fk>>
+}
+
 Entity Enrollment {
     student_id: int <<pk>> <<fk>>
-    course_id: int <<pk>> <<fk>>
-    semester_id: int <<pk>> <<fk>>
-    instructor_id: int <<pk>> <<fk>>
+    offering_id: int <<pk>> <<fk>>
     classwork_marks: int
     homework_marks: int
     midterm_mark: int
@@ -70,7 +74,7 @@ Entity Major {
 Entity Timeslot {
     time_slot_id: int <<pk>>
     room_id: int <<pk>> <<fk>>
-    course_id: int <<fk>>
+    offering_id: int <<fk>>
 
 }
 
@@ -91,19 +95,20 @@ Entity Course {
 
 }
 
-Userinfo ||--|| Instructor
-Userinfo ||--|| Student
-Userinfo ||--o{ Ticket
-Major ||--o{ Student
-Major ||--|| Faculty
-Enrollment }o---o{ Instructor
+Userinfo   ||---|| Instructor
+Userinfo   ||---|| Student
+Userinfo   ||---o{ Ticket
+Major      ||---o{ Student
+Major      ||---|| Faculty
+Enrollment }o---|| Offering
+Offering   }o---|| Course
+Offering   }o---|| Semester
+Offering   }o---|| Instructor
 Enrollment }o---|| Student
-Enrollment }o---|| Course
-Enrollment }o---|| Semester
 Enrollment ||---o{ AbsenceInstance
-Course }o---|| Faculty
-Timeslot }o---|| Room
-Timeslot }o---|| Course
+Course     }o---|| Faculty
+Timeslot   }o---|| Room
+Timeslot   }|---|| Offering
 
 Course }o---o{ Course: requires
 
