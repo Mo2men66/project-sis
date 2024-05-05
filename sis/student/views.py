@@ -1,6 +1,6 @@
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import login, logout as auth_logout
-from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from command.models import *
 from .forms import *
@@ -25,10 +25,7 @@ def courses(req):
                                                                    minimum_level__lte=student.level,
                                                                    prerequisites__in=passed_courses)
 
-    initial = [{'course': course, 'timeslot': course.timeslot_set.all()} for course in courses]
-    formset = CourseRegisterFormset(req.POST, initial=initial)
-
-    return render(req, 'student/courses.html', {'formset': formset})
+    return render(req, 'student/courses.html', {'courses': courses})
 
 @login_required(login_url='student:login')
 def calender(req):
@@ -52,7 +49,15 @@ def update_profile(req):
 
 @login_required(login_url='student:login')
 def register_course(req, course_pk):
-    return render(req, 'student/register.html', {})
+    course = get_object_or_404(Course, pk=course_pk)
+    student = req.user.student
+
+    offering = get_object_or_404(course.offering_set, semester=Semester.objects.last())
+
+    new_enrollment = Enrollment.objects.create(student, offering)
+    new_enrollment.save()
+
+    return redirect('student:courses')
 
 @login_required(login_url='student:login')
 def drop_course(req, course_pk):
