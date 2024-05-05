@@ -21,10 +21,7 @@ class Student(models.Model):
 
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    course = models.ForeignKey('command.Course', on_delete=models.CASCADE, to_field='code')
-    semester = models.ForeignKey('command.Semester', on_delete=models.CASCADE)
-    instructor = models.ForeignKey('command.Instructor', on_delete=models.CASCADE)
-    timeslot = models.ForeignKey('command.Timeslot', on_delete=models.CASCADE)
+    offering = models.ForeignKey('command.Offering', on_delete=models.DO_NOTHING)
     classwork_marks = models.IntegerField()
     homework_marks = models.IntegerField()
     midterm_mark = models.IntegerField()

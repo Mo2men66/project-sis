@@ -62,9 +62,14 @@ class Room(models.Model):
 class Timeslot(models.Model):
     day = models.TextField(choices=DAYS)
     timeslot = models.TextField(choices=TIMESLOTS)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, to_field='code')
+    offering = models.ForeignKey('command.Offering', on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.day} {self.timeslot}'
     
+
+class Offering(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, to_field='code')
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
