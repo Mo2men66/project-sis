@@ -7,6 +7,9 @@ class Student(models.Model):
     level = models.SmallIntegerField(default=1)
     enrolled = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'Student: {self.userinfo.first_name} {self.userinfo.last_name} - {self.major}'
+
     def get_academic_status(self):
         if self.cgpa > 3.7:
             return 'Excellence'
@@ -27,4 +30,8 @@ class Enrollment(models.Model):
     midterm_mark = models.IntegerField(default=0)
     final_mark = models.IntegerField(default=0)
     gpa = models.FloatField(default=0)
+
+    def __str__(self):
+        return f'{self.student} | {self.offering}'
+
 
