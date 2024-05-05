@@ -1,9 +1,9 @@
 from django.db import models
 
 SEMESTER_TYPE = (
-        (1, 'Summer'),
-        (2, 'Fall'),
-        (3, 'Spring'),
+        ('Summer', 'Summer'),
+        ('Fall', 'Fall'),
+        ('Spring', 'Spring'),
 )
 
 TIMESLOTS = (
@@ -23,6 +23,10 @@ DAYS = (
 
 class Instructor(models.Model):
     userinfo = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='instructor')
+    faculty = models.ForeignKey('command.Faculty', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'Instructor: {self.userinfo.first_name} {self.userinfo.last_name} | {self.faculty}'
 
 class Faculty(models.Model):
     name = models.CharField(max_length=250)
@@ -36,7 +40,7 @@ class Major(models.Model):
     degree = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.name
+        return f'{self.faculty} | {self.name}' 
 
 class Course(models.Model):
     code = models.CharField(max_length=6, unique=True)
@@ -56,8 +60,14 @@ class Semester(models.Model):
     kind = models.TextField(choices=SEMESTER_TYPE)
     year = models.DateField()
 
+    def __str__(self):
+        return f'{self.kind} {self.year}'
+
 class Room(models.Model):
     name = models.CharField(max_length=len('BXX-FXX-XX'))
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Timeslot(models.Model):
     day = models.TextField(choices=DAYS)
@@ -66,10 +76,13 @@ class Timeslot(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.day} {self.timeslot}'
+        return f'{self.day} {self.timeslot}: {self.offering}'
     
 
 class Offering(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, to_field='code')
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.course} by {self.instructor.userinfo.first_name} {self.instructor.userinfo.last_name}, {self.semester}'
