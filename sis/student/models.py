@@ -22,9 +22,9 @@ class Student(models.Model):
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     offering = models.ForeignKey('command.Offering', on_delete=models.DO_NOTHING)
-    classwork_marks = models.IntegerField()
-    homework_marks = models.IntegerField()
-    midterm_mark = models.IntegerField()
-    final_mark = models.IntegerField()
-    gpa = models.FloatField()
+    classwork_marks = models.IntegerField(default=0)
+    homework_marks = models.IntegerField(default=0)
+    midterm_mark = models.IntegerField(default=0)
+    final_mark = models.IntegerField(default=0)
+    gpa = models.FloatField(default=0)
 
