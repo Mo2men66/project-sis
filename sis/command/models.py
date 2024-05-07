@@ -1,9 +1,9 @@
 from django.db import models
 
 SEMESTER_TYPE = (
-        ('Summer', 'Summer'),
-        ('Fall', 'Fall'),
-        ('Spring', 'Spring'),
+        (1, 'Summer'),
+        (2, 'Fall'),
+        (3, 'Spring'),
 )
 
 TIMESLOTS = (
@@ -48,7 +48,7 @@ class Course(models.Model):
     description = models.TextField()
     credit_hours = models.IntegerField()
     mandatory = models.BooleanField()
-    faculty = models.OneToOneField(Faculty, on_delete=models.CASCADE)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     prerequisites = models.ManyToManyField('command.Course')
     minimum_level = models.PositiveSmallIntegerField(default=1)
     available = models.BooleanField(default=False)
@@ -57,11 +57,11 @@ class Course(models.Model):
         return self.title
 
 class Semester(models.Model):
-    kind = models.TextField(choices=SEMESTER_TYPE)
+    kind = models.SmallIntegerField(choices=SEMESTER_TYPE)
     year = models.DateField()
 
     def __str__(self):
-        return f'{self.kind} {self.year}'
+        return f'{SEMESTER_TYPE[self.kind - 1][1]} {self.year.year}'
 
 class Room(models.Model):
     name = models.CharField(max_length=len('BXX-FXX-XX'))
@@ -70,13 +70,13 @@ class Room(models.Model):
         return f'{self.name}'
 
 class Timeslot(models.Model):
-    day = models.TextField(choices=DAYS)
-    timeslot = models.TextField(choices=TIMESLOTS)
+    day = models.SmallIntegerField(choices=DAYS)
+    timeslot = models.SmallIntegerField(choices=TIMESLOTS)
     offering = models.ForeignKey('command.Offering', on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.day} {self.timeslot}: {self.offering}'
+        return f'{DAYS[self.day - 1][1]} {TIMESLOTS[self.timeslot - 1][1]}: {self.offering}'
     
 
 class Offering(models.Model):
