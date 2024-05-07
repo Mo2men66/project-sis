@@ -61,7 +61,14 @@ def register_course(req, course_pk):
 
 @login_required(login_url='student:login')
 def drop_course(req, course_pk):
-    pass
+    course = get_object_or_404(Course, pk=course_pk)
+    student = req.user.student
+
+    enrollment = get_object_or_404(student.enrollment_set, semester=Semester.objects.last(),
+                                   offering__course=course)
+    enrollment.delete()
+
+    return redirect('student:courses')
 
 @login_required(login_url='student:login')
 def withdraw_course(req, course_pk=None):
