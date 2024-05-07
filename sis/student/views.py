@@ -25,7 +25,9 @@ def courses(req):
                                                                    minimum_level__lte=student.level,
                                                                    prerequisites__in=passed_courses)
 
-    return render(req, 'student/courses.html', {'courses': courses})
+    current_enrollments = student.enrollment_set.filter(semester=Semester.objects.last())
+
+    return render(req, 'student/courses.html', {'courses': courses, 'current_enrollments': current_enrollments})
 
 @login_required(login_url='student:login')
 def calender(req):
