@@ -17,15 +17,21 @@ def logout(req):
 @login_required(login_url='student:login')
 def courses(req):
     student = req.user.student
+    current_semester = Semester.objects.last()
 
-    passed_courses = student.enrollment_set.exclude(semester=Semester.objects.last()).filter(gpa__gte=1.7)
-    passed_courses = map(lambda o: o.course, passed_courses)
+    passed_courses = student.enrollment_set.exclude(offering__semester=current_semester).filter(gpa__gte=1.7)
+    passed_courses = list(map(lambda o: o.offering.course.id, passed_courses))
+    registered_courses = student.enrollment_set.filter(offering__semester=current_semester)
 
-    courses = Course.objects.exclude(pk__in=passed_courses).filter(faculty=student.major.faculty,
-                                                                   minimum_level__lte=student.level,
-                                                                   prerequisites__in=passed_courses)
+    courses = Course.objects.exclude(pk__in=passed_courses) \
+            if len(passed_courses) > 0 else Course.objects.all()
 
-    current_enrollments = student.enrollment_set.filter(semester=Semester.objects.last())
+    courses = courses.exclude(pk__in=registered_courses).filter(faculty=student.major.faculty,
+                                                                minimum_level__lte=student.level)
+
+    current_enrollments = student.enrollment_set.filter(offering__semester=current_semester)
+
+    print(f'{registered_courses=}')
 
     return render(req, 'student/courses.html', {'courses': courses, 'current_enrollments': current_enrollments})
 
@@ -56,7 +62,7 @@ def register_course(req, course_pk):
 
     offering = get_object_or_404(course.offering_set, semester=Semester.objects.last())
 
-    new_enrollment = Enrollment.objects.create(student, offering)
+    new_enrollment = Enrollment.objects.create(student=student, offering=offering)
     new_enrollment.save()
 
     return redirect('student:courses')
@@ -66,7 +72,8 @@ def drop_course(req, course_pk):
     course = get_object_or_404(Course, pk=course_pk)
     student = req.user.student
 
-    enrollment = get_object_or_404(student.enrollment_set, semester=Semester.objects.last(),
+    enrollment = get_object_or_404(student.enrollment_set,
+                                   offering__semester=Semester.objects.last(),
                                    offering__course=course)
     enrollment.delete()
 
