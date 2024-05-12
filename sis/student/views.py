@@ -100,7 +100,30 @@ def drop_course(req, course_pk):
 
 @login_required(login_url='student:login')
 def withdraw_course(req, course_pk=None):
-    return render(req, 'student/withdraw.html', {})
+    student = req.user.student
+    current_semester = Semester.objects.last()
+
+    currently_withdrawn = WithdrawRequest.objects.filter(enrollment__offering__semester=current_semester,
+                                                         enrollment__student=student) \
+                                                 .values_list('enrollment__offering__course__pk', flat=True)
+    print(currently_withdrawn)
+    current_enrollments = student.enrollment_set.exclude(offering__course__pk__in=currently_withdrawn) \
+                                                .filter(offering__semester=current_semester)
+    print(current_enrollments)
+
+    if course_pk is None:
+        return render(req, 'student/withdraw.html', {'current_enrollments': current_enrollments})
+
+
+    enrollment = get_object_or_404(student.enrollment_set,
+                                   offering__course__pk=course_pk,
+                                   offering__semester=current_semester)
+    
+    withdraw_request = WithdrawRequest.objects.create(enrollment=enrollment)
+    withdraw_request.save()
+    
+    return redirect('student:withdraw_course')
+
 
 @login_required(login_url='student:login')
 def view_attendance(req):

@@ -5,7 +5,16 @@
       <div class="drop">
          <span class="drop-course">Choose Course To withdraw</span>
          <ul class="Av-Courses">
-            <li>Operating System <span class="cancel"><i class='bx bxs-x-circle'></i></span></li>
+             {% for enrol in current_enrollments %}
+             <li>
+                 {{ enrol.offering }}
+                 <span class="cancel">
+                     <a href="{% url 'student:withdraw_course' enrol.offering.course.pk %}">
+                        <i class='bx bxs-x-circle'></i>
+                     </a>
+                 </span>
+             </li>
+             {% endfor %}
          </ul>
       </div>
    </div>
