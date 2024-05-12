@@ -6,12 +6,17 @@
      <tr>
         <th class="Course">Course</th>
         <th class="Absent">Absent</th>
-        <th class="Warning">Warning</th>
      </tr>
      <tr>
-        <td>Operating System</td>
+         {% for enrol, count in absense_records %}
+             <td>{{ enrol.offering }}</td>
+             <td> {{ count }} </td>
+           
+         {% endfor %}
+        <!--<td>Operating System</td>
         <td>5</td>
         <td class="Alert">1</td>
+        -->
      </tr>
   </table>
 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Count
 from command.models import *
 from .forms import *
 from .models import *
@@ -126,8 +126,18 @@ def withdraw_course(req, course_pk=None):
 
 
 @login_required(login_url='student:login')
-def view_attendance(req):
-    return render(req, 'student/attendance.html', {})
+def view_absense(req):
+    student = req.user.student
+    current_semester = Semester.objects.last()
+
+    absense_records = Absense.objects.filter(enrollment__offering__semester=current_semester,
+                                             enrollment__student=student) \
+                                     .values_list('enrollment') \
+                                     .annotate(absenses=Count('id')) \
+
+    absense_records = list(map(lambda t: (Enrollment.objects.get(pk=t[0]), t[1]), absense_records))
+
+    return render(req, 'student/absense.html', {'absense_records': absense_records})
 
 @login_required(login_url='student:login')
 def view_report(req):
