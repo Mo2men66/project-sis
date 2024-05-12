@@ -34,4 +34,8 @@ class Enrollment(models.Model):
     def __str__(self):
         return f'{self.student} | {self.offering}'
 
+class Absense(models.Model):
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
+
 
