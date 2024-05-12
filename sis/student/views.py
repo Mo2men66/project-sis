@@ -22,9 +22,10 @@ def courses(req):
     passed_courses = student.enrollment_set.exclude(offering__semester=current_semester).filter(gpa__gte=1.7)
     passed_courses = list(map(lambda o: o.offering.course.id, passed_courses))
     registered_courses = student.enrollment_set.filter(offering__semester=current_semester)
+    registered_courses = list(map(lambda o: o.offering.course.id, registered_courses))
 
-    courses = Course.objects.exclude(pk__in=passed_courses) \
-            if len(passed_courses) > 0 else Course.objects.all()
+    courses = Course.objects.exclude(Q(pk__in=passed_courses) | Q(pk__in=registered_courses)) \
+            if len(passed_courses) > 0 else Course.objects.exclude(pk__in=registered_courses)
 
     courses = courses.exclude(pk__in=registered_courses).filter(faculty=student.major.faculty,
                                                                 minimum_level__lte=student.level)
