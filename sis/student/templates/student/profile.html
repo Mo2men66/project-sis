@@ -6,7 +6,8 @@
    <div class="info">
       <div class="user">
          <img src="images/pic-1.jpg" alt="">
-         <h3>Mo'men Ali</h3>
+         <h3> {{ student.first_name }} {{ student.last_name }}</h3>
+         <h4> {{ student.username }} </h4>
          <p>student</p>
          <a href="{% url 'student:update_profile' %}" class="inline-btn">update profile</a>
       </div>

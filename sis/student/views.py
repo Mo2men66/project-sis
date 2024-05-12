@@ -58,6 +58,7 @@ def calender(req):
 
 @login_required(login_url='student:login')
 def gpa_calculator(req):
+
     return render(req, 'student/gpa_calculator.html', {})
 
 @login_required(login_url='student:login')
@@ -66,7 +67,8 @@ def payment(req):
 
 @login_required(login_url='student:login')
 def profile(req):
-    return render(req, 'student/profile.html', {})
+    student = req.user
+    return render(req, 'student/profile.html', {'student': student})
 
 @login_required(login_url='student:login')
 def update_profile(req):
