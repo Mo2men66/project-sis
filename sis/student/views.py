@@ -38,7 +38,23 @@ def courses(req):
 
 @login_required(login_url='student:login')
 def calender(req):
-    return render(req, 'student/calander.html', {})
+    student = req.user.student
+    current_semester = Semester.objects.last()
+
+    current_enrollments = student.enrollment_set.filter(offering__semester=current_semester)
+    schedule = {f'{day[1]}': [None] * len(TIMESLOTS) for day in DAYS}
+
+    for enrol in current_enrollments:
+        timeslot = enrol.offering.timeslot_set.last()
+        day = DAYS[timeslot.day - 1][1]
+        if day not in schedule:
+            schedule[day] = [timeslot]
+            continue
+
+        schedule[day][timeslot.timeslot - 1] = timeslot
+
+    print(schedule)
+    return render(req, 'student/calander.html', {'schedule': schedule})
 
 @login_required(login_url='student:login')
 def gpa_calculator(req):

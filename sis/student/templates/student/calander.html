@@ -3,7 +3,29 @@
 {% block content %}
    <div>
       <table class="calander">
-         <tr>
+           <tr>
+               <th></th>
+               <th>09:00 - 10:30</th>
+               <th>10:45 - 12:15</th>
+               <th>12:30 - 02:00</th>
+               <th>02:15 - 03:45</th>
+               
+           </tr>
+          {% for day, timeslots in schedule.items %}
+            <tr>
+                <td> {{ day }} </td>
+                {% for timeslot in timeslots %}
+                    <td> 
+                        {{ timeslot.offering.course }} 
+                        <br />
+                        {{ timeslot.room }}
+                    </td>
+                {% endfor %}
+
+            </tr>
+          {% endfor %}
+          <!--
+          <tr>
             <th>Day\Time</th>
             <th>9:00 - 9:45</th>
             <th>9:45 - 10:30</th>
@@ -69,6 +91,7 @@
             <td></td>
             <td></td>
          </tr>
+          -->
       </table>
    </div>
 
