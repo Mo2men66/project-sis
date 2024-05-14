@@ -144,6 +144,21 @@ def view_report(req):
     return render(req, 'student/report.html', {})
 
 @login_required(login_url='student:login')
-def view_results(req):
-    return render(req, 'student/result.html', {})
+def view_results(req, semester_pk=None):
+    student = req.user.student
+    current_semester = Semester.objects.last()
+
+    semesters = Enrollment.objects.filter(student=student) \
+                                  .values_list('offering__semester', flat=True) \
+                                  .distinct()
+
+    semesters = Semester.objects.filter(Q(pk__in=semesters) & ~Q(pk=current_semester.pk))
+
+    if semester_pk is None:
+        return render(req, 'student/result.html', {'semesters': semesters})
+
+    results = Enrollment.objects.filter(student=student,
+                                        offering__semester__pk=semester_pk)
+
+    return render(req, 'student/result.html', {'semesters': semesters, 'results': results})
 
