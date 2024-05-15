@@ -2,12 +2,87 @@
 
 {% block content %}
 
+
 <div class="student-data">
-   <h3>Student Data</h3>
-   <p>
-      <br>
-      <div style="display: flex; justify-content: space-between;">
-         <div>  
+<<<<<<< Updated upstream
+    <div class="column">
+        <p>
+            <span><strong>Student Data</strong></span><br>
+            <span><strong>Student Name:</strong>{{ user.userinfo.get_full_name }}</span><br>
+            <span><strong>Faculty:</strong>{{ user.major.faculty }}</span><br>
+            <span><strong>Student Major:</strong> {{ user.major }}</span><br>
+            <span>
+                <strong>Enrollment Status:</strong>
+                {% if not user.enrolled %}
+                    Not
+                {% endif %}
+                Enrolled
+            </span>
+            <br>
+            <span><strong>Total Passed CH:</strong> 70</span>
+        </p>
+    </div>
+    <div class="column">
+        <p> 
+            <br>
+            <br>
+            <span><strong>Student ID:</strong> {{ user.userinfo.username }} </span><br>
+            <span><strong>Degree:</strong> {{ user.major.degree }} </span><br>
+            <span><strong>Level:</strong> Level {{ user.level }} </span><br>
+            <span><strong>Academic Status:</strong> {{ user.get_academic_status }} </span><br>
+            <span><strong>CGPA:</strong> {{ user.cgpa }} </span>
+        </p>
+    </div>
+</div>
+
+{% comment %}
+<div class="student-data">
+=======
+>>>>>>> Stashed changes
+
+    <div class="column">
+        <p>
+            <span><strong>Student Data</strong></span><br>
+            <span><strong>Student Name:</strong> {{ user.userinfo.get_full_name }}</span><br>
+            <span><strong>Faculty:</strong> Computer Science and Information Technology Programs</span><br>
+            <span><strong>Student Major:</strong> B.Sc. Computer Science</span><br>
+            <span><strong>Enrollment Status:</strong> Enrolled</span><br>
+            <span><strong>Total Passed CH:</strong> 70</span>
+        </p>
+    </div>
+    <div class="column">
+        <p> 
+            <br>
+            <br>
+            <span><strong>Student ID:</strong> 320210310</span><br>
+            <span><strong>Degree:</strong> B.Sc</span><br>
+            <span><strong>Level:</strong> Level 3</span><br>
+            <span><strong>Academic Status:</strong> Normal</span><br>
+            <span><strong>CGPA:</strong> 3</span>
+        </p>
+    </div>
+</div>
+
+
+
+{% comment %}
+<div class="column">
+    <p> 
+        <br>
+        <br>
+        <span><strong>Student ID:</strong> 320210310</span><br>
+        <span><strong>Degree:</strong> B.Sc</span><br>
+        <span><strong>Level:</strong> Level 3</span><br>
+        <span><strong>Academic Status:</strong> Normal</span><br>
+        <span><strong>CGPA:</strong> 3</span>
+    </p>
+</div>
+</div>
+<h3>Student Data</h3>
+<p>
+    <br>
+    <div style="display: flex; justify-content: space-between;">
+        <div>  
             <span style="font-weight:bold;">Student Name: </span>
             <span>{{ user.userinfo.first_name }}</span>
             <br>
@@ -26,9 +101,9 @@
             <br>
             <span style="font-weight:bold;">Total Passed CH: </span>
             <span>70</span>
-         </div>
-         
-         <div> 
+        </div>
+
+        <div> 
             <span style="font-weight:bold;">Student ID: </span>
             <span> {{ user.userinfo.username }}</span>
             <br>
@@ -47,9 +122,11 @@
             <br>
             <span style="font-weight:bold;">CGPA: </span>
             <span> {{ user.cgpa }} </span>
-         </div>
-      </div>
-   </p>
+        </div>
+    </div>
+</p>
 </div>
+{% endcomment %}
 
 {% endblock %}
+
