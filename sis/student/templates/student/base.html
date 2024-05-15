@@ -36,6 +36,7 @@
             </div>
             <div><span class="logo-name">EJUST</span></div>
             <ul>
+                {% block navbar %}
                 <nav class="navbar">
                     <li><a href="{% url 'student:index'           %}" style="background-color: #246997;"><i class="fas fa-home"></i><span class="Names">Home</span></a></li>
                     <li><a href="{% url 'student:calender'        %}"><i class="fas fa-calendar"></i><span class="Names">Calendar</span></a></li>
@@ -47,6 +48,7 @@
                     <li><a href="{% url 'student:gpa'             %}"><i class="fas fa-calculator"></i><span class="Names">GPA Calculator</span></a></li> 
                     <li><a href="{% url 'student:results'         %}"><i class="fas fa-poll"></i><span class="Names">Result</span></a> </li>
                 </nav>
+                {% endblock %}
             </ul>
         </div>
         </div>

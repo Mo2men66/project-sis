@@ -1,5 +1,19 @@
 {% extends 'student/base.html' %}
 
+{% block navbar %}
+<nav class="navbar">
+   <li><a href="{% url 'student:index'           %}"><i class="fas fa-home"></i><span class="Names">Home</span></a></li>
+   <li><a href="{% url 'student:calender'        %}" style="background-color: #246997;"><i class="fas fa-calendar"></i><span class="Names">Calendar</span></a></li>
+   <li><a href="{% url 'student:view_absense'    %}"><i class="fas fa-clipboard-check"></i><span class="Names">Attendance</span></a></li>
+   <li><a href="{% url 'student:courses'         %}"><i class="fas fa-plus-circle"></i><span class="Names">Register/Drop Courses</span></a> </li>
+   <li><a href="{% url 'student:withdraw_course' %}"><i class="fas fa-minus-circle"></i><span class="Names">Withdraw</span></a> </li>
+   <li><a href="{% url 'student:payment'         %}"><i class="fas fa-money-check-alt"></i><span class="Names">Payment</span></a></li>
+   <li><a href="{% url 'student:report'          %}"><i class="fas fa-file-alt"></i><span class="Names">Report</span></a> </li>
+   <li><a href="{% url 'student:gpa'             %}"><i class="fas fa-calculator"></i><span class="Names">GPA Calculator</span></a></li> 
+   <li><a href="{% url 'student:results'         %}"><i class="fas fa-poll"></i><span class="Names">Result</span></a> </li>
+</nav>
+{% endblock %}
+
 {% block content %}
    <div>
       <table class="calander">
