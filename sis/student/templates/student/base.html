@@ -2,67 +2,125 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>{% block title %} {% endblock %}</title>
-   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-   <link rel="stylesheet" href="{% static 'student/css/style.css' %}">
-   {% block head %}{% endblock %}
-</head>
-<body>
-<header class="header">
-   <section class="flex">
-   <span class="Title-name">Welcome to EGYPT-JAPAN Unversity For Science and Technology</span>
-   <div class="icons">
-      <div id="search-btn" class="fas fa-search"></div>
-      <div id="user-btn" class="fas fa-user"></div>
-      <div id="toggle-btn" class="fas fa-sun"></div>
-   </div>
-   <div class="profile">
-      <img src="{% static 'student/images/pic-1.jpg' %}" class="image" alt="">
-      <h3 class="name">{{ user.userinfo.get_full_name }}</h3>
-      <p class="role">student</p>
-      <a href="{% url 'student:profile' %}" class="btn">view profile</a>
-      <div class="flex-btn">
-         <a href="{% url 'student:logout' %}" class="option-btn">logout</a>
-         </div>
-      </div>
-   </section>
-</header>   
-<div class="side-bar">
-   <div class="logo-details">
-      <i class="fa-solid fa-e"></i>
-      <div id="menu-btn" class="bx bx-menu"></div>
-   </div>
-   <div><span class="logo-name">EJUST</span></div>
-   <ul>
-   <nav class="navbar">
-      <li><a href="{% url 'student:index' %}"><i class="fas fa-home"></i><span class="tooltip">home</span></a></li>
-      <li><a href="{% url 'student:calender' %}"><i class="fas fa-calendar"></i><span class="tooltip">calander</span></a></li>
-      <li><a href="{% url 'student:view_absense' %}"><i class="fas fa-clipboard-check"></i><span class="tooltip">attendance</span></a></li>
-      <li><a href="{% url 'student:courses' %}"><i class="fas fa-plus-circle"></i><span class="tooltip">reg add/drop</span></a> </li>
-      <li><a href="{% url 'student:withdraw_course' %}"><i class="fas fa-minus-circle"></i><span class="tooltip">withdraw</span></a> </li>
-      <li><a href="{% url 'student:payment' %}"><i class="fas fa-money-check-alt"></i><span class="tooltip">payment</span></a></li>
-      <li><a href="{% url 'student:report' %}"><i class="fas fa-file-alt"></i><span class="tooltip">report</span></a> </li>
-      <li><a href="{% url 'student:gpa' %}"><i class="fas fa-calculator"></i><span class="tooltip">gpa calculator</span></a></li> 
-      <li><a href="{% url 'student:results' %}"><i class="fas fa-poll"></i><span class="tooltip">result</span></a> </li>
-   </nav>
-</ul>
-</div>
-</div>
-
-
-{% block content %}
-
-{% endblock %}
-
-
-<footer class="footer">
-   &copy; copyright @ 2024 by <span>Mo'men Ali wlso7ba Alkrma</span> | all rights reserved!
-</footer>
-<script src="{% static 'student/js/script.js' %}"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'student/css/style.css' %}">
+    </head>
+    <body style="background-image: url('{% static 'student/images/1930779.jpg' %}'); background-size: cover;">
+        <header class="header">
+            <section class="flex">
+                <span class="Title-name">Welcome to EGYPT-JAPAN Unversity For Science and Technology</span>
+                <div class="icons">
+                    <div id="search-btn" class="fas fa-search"></div>
+                    <div id="user-btn" class="fas fa-user"></div>
+                    <div id="toggle-btn" class="fas fa-sun"></div>
+                </div>
+                <div class="profile">
+                    <h3 class="name">{{ user.userinfo.get_full_name }}</h3>
+                    <p class="role">student</p>
+                    <a href="{% url 'student:profile' %}" class="btn">view profile</a>
+                    <div class="flex-btn">
+                        <a href="{% url 'student:logout' %}"class="option-btn">logout</a>
+                    </div>
+                </div>
+            </section>
+        </header>   
+        <div class="side-bar">
+            <div class="logo-details">
+                <div id="menu-btn" class="bx bx-menu"></div>
+            </div>
+            <div><span class="logo-name">EJUST</span></div>
+            <ul>
+                <nav class="navbar">
+                    <li><a href="{% url 'student:index'           %}" style="background-color: #246997;"><i class="fas fa-home"></i><span class="Names">Home</span></a></li>
+                    <li><a href="{% url 'student:calender'        %}"><i class="fas fa-calendar"></i><span class="Names">Calendar</span></a></li>
+                    <li><a href="{% url 'student:view_absense'    %}"><i class="fas fa-clipboard-check"></i><span class="Names">Attendance</span></a></li>
+                    <li><a href="{% url 'student:courses'         %}"><i class="fas fa-plus-circle"></i><span class="Names">Register/Drop Courses</span></a> </li>
+                    <li><a href="{% url 'student:withdraw_course' %}"><i class="fas fa-minus-circle"></i><span class="Names">Withdraw</span></a> </li>
+                    <li><a href="{% url 'student:payment'         %}"><i class="fas fa-money-check-alt"></i><span class="Names">Payment</span></a></li>
+                    <li><a href="{% url 'student:report'          %}"><i class="fas fa-file-alt"></i><span class="Names">Report</span></a> </li>
+                    <li><a href="{% url 'student:gpa'             %}"><i class="fas fa-calculator"></i><span class="Names">GPA Calculator</span></a></li> 
+                    <li><a href="{% url 'student:results'         %}"><i class="fas fa-poll"></i><span class="Names">Result</span></a> </li>
+                </nav>
+            </ul>
+        </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+        <script src="{% static 'student/js/script.js' %}"></script>
+    </body>
 </html>
+
+{% comment %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %} {% endblock %}</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'student/css/style.css' %}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header class="header">
+            <section class="flex">
+                <span class="Title-name">Welcome to EGYPT-JAPAN Unversity For Science and Technology</span>
+                <div class="icons">
+                    <div id="search-btn" class="fas fa-search"></div>
+                    <div id="user-btn" class="fas fa-user"></div>
+                    <div id="toggle-btn" class="fas fa-sun"></div>
+                </div>
+                <div class="profile">
+                    <img src="{% static 'student/images/pic-1.jpg' %}" class="image" alt="">
+                    <h3 class="name">{{ user.userinfo.get_full_name }}</h3>
+                    <p class="role">student</p>
+                    <a href="{% url 'student:profile' %}" class="btn">view profile</a>
+                    <div class="flex-btn">
+                        <a href="{% url 'student:logout' %}" class="option-btn">logout</a>
+                    </div>
+                </div>
+            </section>
+        </header>   
+        <div class="side-bar">
+            <div class="logo-details">
+                <i class="fa-solid fa-e"></i>
+                <div id="menu-btn" class="bx bx-menu"></div>
+            </div>
+            <div><span class="logo-name">EJUST</span></div>
+            <ul>
+                <nav class="navbar">
+                    <li><a href="{% url 'student:index'           %}"><i class="fas fa-home"></i><span class="tooltip">home</span></a></li>
+                    <li><a href="{% url 'student:calender'        %}"><i class="fas fa-calendar"></i><span class="tooltip">calander</span></a></li>
+                    <li><a href="{% url 'student:view_absense'    %}"><i class="fas fa-clipboard-check"></i><span class="tooltip">attendance</span></a></li>
+                    <li><a href="{% url 'student:courses'         %}"><i class="fas fa-plus-circle"></i><span class="tooltip">reg add/drop</span></a> </li>
+                    <li><a href="{% url 'student:withdraw_course' %}"><i class="fas fa-minus-circle"></i><span class="tooltip">withdraw</span></a> </li>
+                    <li><a href="{% url 'student:payment'         %}"><i class="fas fa-money-check-alt"></i><span class="tooltip">payment</span></a></li>
+                    <li><a href="{% url 'student:report'          %}"><i class="fas fa-file-alt"></i><span class="tooltip">report</span></a> </li>
+                    <li><a href="{% url 'student:gpa'             %}"><i class="fas fa-calculator"></i><span class="tooltip">gpa calculator</span></a></li> 
+                    <li><a href="{% url 'student:results'         %}"><i class="fas fa-poll"></i><span class="tooltip">result</span></a> </li>
+                </nav>
+            </ul>
+        </div>
+        </div>
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+        <footer class="footer">
+            &copy; copyright @ 2024 by <span>Mo'men Ali wlso7ba Alkrma</span> | all rights reserved!
+        </footer>
+        <script src="{% static 'student/js/script.js' %}"></script>
+    </body>
+</html>
+{% endcomment %}
