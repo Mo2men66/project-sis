@@ -38,4 +38,8 @@ class Absense(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
 
+class WithdrawRequest(models.Model):
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    approved = models.BooleanField(default=False)
+
 
