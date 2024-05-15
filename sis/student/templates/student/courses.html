@@ -1,8 +1,21 @@
 {% extends 'student/base.html' %}
 
 {% block content %}
-<div class="req" style="border: 1px solid black; width: 98%; height: 340px; margin-top: 10   px; margin-left: 1%;">
-      <span class="selector-Course">Course</span>
+<div style="border: 1px solid black; background-color:#96cff8; width:98%; height: 340px; margin-top: 10   px; margin-left: 1%;">
+     <ul class="Avl-Courses">
+      {% for course in courses %}
+      <li>
+         <a href="{% url 'student:register_course' course.id %}">
+            {{ course }}
+         </a>
+      </li>
+      {% endfor %}
+      <!--<li>ads</li>
+      <li>das</li>
+      <li>sad</li>-->
+     </ul>
+   
+   <!-- <span class="selector-Course">Course</span>
       <span class="selector-Time">TimeSlots</span>
       <div class="selectors">
 
@@ -11,7 +24,7 @@
               <li> {{ course }} </li>
           {% endfor %}
       </ul>
-      <!--<div class="select-menuA">
+      <div class="select-menuA">
          <div class="select-btnA">
             <span class="sBtn-textA">Choose Your Courses</span>
             <i class="bx bx-chevron-down"></i>
@@ -43,15 +56,16 @@
          </ul>
       </div>-->
    </div>
-   <div class="confirm-btn-pos">
-      <button class="confirm-btn">Confirm</button>
    </div>
-   </div>
-   <div style="background-color:#E3F2FD;border: 1px solid black; width: 98%; height: 250px; margin-top: 10px; margin-left: 1%;">
+   <div style="background-color:#96cff8;border: 1px solid black; width: 98%; height: 250px; margin-top: 10px; margin-left: 1%;">
       <div class="drop">
          <span class="drop-course">Choose Course To Drop</span>
          <ul class="Av-Courses">
-            <li>Operating System <span class="cancel"><i class='bx bxs-x-circle'></i></span></li>
+            {% for enrol in current_enrollments %}
+            <li>
+               {{ enrol.offering }}
+               <a href="{% url 'student:drop_course' enrol.offering.course.id %}"><span class="cancel"><i class='bx bxs-x-circle'></i></span></a></li>
+            {% endfor %}
          </ul>
       </div>
    </div>
