@@ -9,6 +9,7 @@
    --white:#4793AF;
    --border:.1rem solid rgba(0,0,0,.2);
 }
+
 *{
    font-family: 'Nunito', sans-serif;
    margin:0; padding:0;
@@ -36,6 +37,12 @@ html{
    border-radius:10px ;
    height: 10px;
 }
+body{
+   background-color: var(--light-bg);
+   padding-left: 30rem;
+   overflow: hidden;
+   color: white;
+}
 .image_text__container {
    display: flex;
    justify-content: flex-start;
@@ -47,24 +54,28 @@ html{
    display: block;
  }
 body.dark{
-   --light-color:#eee;
+     color: white;
+   --light-color:#aaa;
    --light-bg:#333;
    --black:#fff;
    --white:#11101d;
    --border:.1rem solid rgba(255,255,255,.2);
 }
 body{
-   background-color: var(--light-bg);
-   padding-left: 30rem;
-   overflow: hidden;
-   color: white;
-   color:#fff;
    padding-left: 7%;
    transition: all 0.5s ease;
 }
 body.active{
    padding-left:19% ;
    transition: all 0.5s ease;
+}
+
+body.dark .selector-Course {
+   color: white; 
+}
+
+body.dark .selector-Time {
+   color: white;
 }
 section{
    padding:2rem;
@@ -254,9 +265,7 @@ section{
 }
 .student-data {
    
-   border-radius: 6px;
-   color: white;
-   border: 1px solid white;
+   border: 1px solid black;
    width: 100%;
    margin-top: 20px;
    margin-left: 34px;
@@ -264,20 +273,18 @@ section{
    display: flex;
    flex-direction: row; 
 }
+
 .column {
-   color: white;
    flex: 1; 
    padding: 13px;
    font-size: 20px; 
 }
 
 .column p {
-   color: white;
    margin: 0; 
 }
 
 .column span {
-   color: white;
    display: block; 
 }
 
@@ -290,7 +297,7 @@ section{
    top: 0; left: 0;
    width: 120px;
    height: 100%;
-   background-color: #4793AF;
+   background-color: #11101d;
    padding: 6px 14px;
    transition: all 0.5s ease;
    z-index: 1200;
@@ -335,7 +342,7 @@ section{
 }
 #menu-btn:hover{
    background-color: white;
-   color: #9e0101;
+   color: orange;
    border-radius: 12px;
    transition: 0.4s;
 }
@@ -438,7 +445,6 @@ section{
 .side-bar.dark {
    background-color: #11101d;
    color: #fff; 
-
 }
 
 .side-bar .navbar li a{
@@ -750,132 +756,105 @@ section{
    justify-content: center;
    flex-wrap: wrap;
    gap: 1.5rem;
-   margin-left: 24px;
+   margin-top: 3rem;
    border: #11101d;
-   height: 650px;
+   height: 490px;
    
 }
 .attendance{
    display: flex;
    align-items: center;
    justify-content: left;
-   padding-left: 24px;
-}
-.attendance table th{
-   height: 75px;
-   font-size: 22px;
-}
-.attendance table td{
-   height: 75px;
-   font-size: 22px;
+   height: 200px;
+   padding-left: 10px;
 }
 .Course{
    text-align: center;
-   width: 650px;
+   width: 700px;
 }
 .Absent{
-   width: 550px;
+   width: 600px;
    text-align: center;
 }
 .Warning{
    text-align: center;
-   width: 220px;
+   width: 200px;
 }
 .Alert{
    background-color: crimson;
 }
 table{
-   font-size: 24px;
+   font-size: 20px;
    font-weight: 500;
    
 }
 th{
-   height: 100px;
+   height: 50px;
    text-align: center;
-   background-color: yellowgreen;
+   background-color: #f7ad47;
 }
 table, th, td{
-   height: 100px;
-   border: 1px solid #fdfdff;
+   height: 50px;
+   padding-left: 50px;
+   border: 1px solid #11101d;
    border-collapse:collapse;
+}
+th,td{
+   padding: 10px;
+   width: 230px;
 }
 td{
    background-color: cadetblue;
    text-align: center;
-   width: 155px;
-}
-.big-box{
-   border: 1px solid white;
-   border-radius: 6px;
-   width: 98%;
-   height: 375px;
-   margin-top: 10px;
-   margin-left: 1%;
-   font-family: Halvetica, Arial, Helvetica, sans-serif;
-   display: flex;
-   flex-wrap: wrap;
-   color: white;
-}
-.gpa-box{
-   border: 1px solid white;
-   border-radius: 6px;
-   height: 98%;
-   margin-top: 10px;
-   margin-left: 1%;
-   font-family: Halvetica, Arial, Helvetica, sans-serif;
-   display: flex;
-   flex-wrap: wrap;
-   color: white;
-}
-.small-box{
-   border: 1px solid white;
-   border-radius: 6px;
-   width: 98%;
-   height: 300px;
-   margin-top: 10px;
-   margin-left: 1%;
-   font-family: Halvetica, Arial, Helvetica, sans-serif;
-   display: flex;
-   flex-wrap: wrap;
-   color: white;
 }
 .selectors{
    display: flex;
    width: 1200px;
    height: 250px;
-   color: #11101d;
-   
    
 }
 .selector-Course{
-   padding-left : 150px;
+   padding-left : 100px;
    font-size: 22px;
    font-weight: 600;
    padding-top: 35px;
+   color: #ffffff;
    
 }
 .select-menuA{
    width: 400px; 
-   padding-left: 10%;
+   padding-left: 30px;
+   color: #eee;
 }
 
 .selector-Time{
-   padding-left: 47%;
+   padding-left: 320px;
    font-size: 22px;
    padding-top: 35px;
    font-weight: 600;
+   color: #ffffff;
+   
+}
+.selector-Faculty{
+   padding-left: 320px;
+   font-size: 22px;
+   padding-top: 35px;
+   font-weight: 600;
+   color: #ffffff;
    
 }
 .select-menuB{
    justify-content: end;
-   padding-left: 37%; 
+   width: 470px;
+   padding-left: 90px; 
+   color: #eee;
 }
+
 .select-menuA .select-btnA{
    display: flex;
    height: 35px;
-   width: 300px;
-   color: var(--light-bg);
-   background-color: #f7ad47;
+   width: 240px;
+   background: #f7ad47;
    padding: 20px;
    font-size: 18px;
    font-weight: 400;
@@ -888,9 +867,8 @@ td{
 .select-menuB .select-btnB{
    display: flex;
    height: 35px;
-   width: 300px;
-   color: var(--light-bg);
-   background-color: #f7ad47;
+   width: 250px;
+   background: #f7ad47;
    padding: 20px;
    font-size: 18px;
    font-weight: 400;
@@ -900,18 +878,50 @@ td{
    cursor: pointer;
    box-shadow: 0 0 5px rgba(0, 0, 0, 0);
 }
+
+.select-menuC{
+   justify-content: end;
+   width: 470px;
+   padding-left: 70px; 
+   color: #eee;
+}
+.select-menuC .select-btnC{
+   display: flex;
+   height: 35px;
+   width: 240px;
+   background: #f7ad47;
+   padding: 20px;
+   font-size: 18px;
+   font-weight: 400;
+   border-radius: 8px;
+   align-items: center;
+   justify-content: space-between;
+   cursor: pointer;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+}
+
 .select-btnA i{
    font-size: 25px;
    transition: 0.3s;
+   color: #eee;
 }
 .select-btnB i{
    font-size: 25px;
    transition: 0.3s;
+   color: #eee;
+}
+.select-btnC i{
+   font-size: 25px;
+   transition: 0.3s;
+   color: #eee;
 }
 .select-menuA.Activated .select-btnA i{
    transform: rotate(180deg);
 }
 .select-menuB.Activated .select-btnB i{
+   transform: rotate(180deg);
+}
+.select-menuC.Activated .select-btnC i{
    transform: rotate(180deg);
 }
 .select-menuA .optionsA{
@@ -920,8 +930,7 @@ td{
    overflow-y: scroll;
    padding: 20px;
    width: 250px;
-   color: var(--light-bg);
-   background-color: #f7ad47;
+   background: #f7ad47;
    border-radius: 8px;
    margin-top: 10px;   
    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -934,18 +943,32 @@ td{
    max-height: 120px;
    overflow-y: scroll;
    width: 290px;
-   color: var(--light-bg);
-   background-color: #f7ad47;
+   background: #f7ad47;
    border-radius: 8px;
    margin-top: 10px;   
    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
    display: none;
 
 }
+.select-menuC .optionsC{
+   position:relative;
+   max-height: 120px;
+   overflow-y: scroll;
+   padding: 20px;
+   width: 250px;
+   background: #f7ad47;
+   border-radius: 8px;
+   margin-top: 10px;   
+   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+   display: none;
+}
 .select-menuA.Activated .optionsA{
    display: block;
 }
 .select-menuB.Activated .optionsB{
+   display: block;
+}
+.select-menuC.Activated .optionsC{
    display: block;
 }
 .optionsA .optionA{
@@ -957,8 +980,7 @@ td{
    padding: 0 16px;
    border-radius: 8px;
    align-items: center;
-   color: var(--light-bg);
-   background-color:#f7ad47;
+   background: #f7ad47;
 }
 .optionsB .optionB{
    display:grid;
@@ -968,33 +990,47 @@ td{
    padding: 0 16px;
    border-radius: 8px;
    align-items: center;
-   color: var(--light-bg);
-   background-color: #f7ad47;
+   background: #f7ad47;
 }
-.optionsA :hover{
-   background-color: #ddd;
-   color:black;
-   border-radius: 6px;
-   transition: 0.7s;
+.optionsC .optionC{
+   display:grid;
+   height: 30px;
+   width: 200;
+   cursor: pointer;
+   padding: 0 16px;
+   border-radius: 8px;
+   align-items: center;
+   background: #f7ad47;
 }
-.optionsB :hover{
-   background-color: #ddd;
-   color:black;
-   border-radius: 6px;
-   transition: 0.7s;
+.optionsA .optionA :hover{
+   background: #4793AF;
+}
+.optionsB .optionB :hover{
+   background: #4793AF;
+}
+.optionsC .optionC :hover{
+   background: #4793AF;
 }
 .optionA .option-textA{
    font-size: 18px;
+   color: #eee;
    margin-left:12px ;
 }
 .optionB .option-textB{
    font-size: 18px;
-   color: #333;
+   color: #eee;
    margin-left:12px ;
 }
+.optionC .option-textC{
+   font-size: 18px;
+   color: #eee;
+   margin-left:12px ;
+}
+
 .confirm-btn-pos{
    display: flex;
-   padding-left: 36%;
+   padding-left: 35%;
+   margin-top: -100px;
 }
 
 .confirm{
@@ -1003,12 +1039,12 @@ td{
    border-radius: 9px;
    width: 300px;
    height: 35px;
-   color: black;
+   color: #eee;
    background-color: #f7ad47;
 }
 .confirm:hover{
-   background-color: orange;
-   color: #ddd;
+   background-color: #218496;
+   color: #11101d;
    transition: 0.5s;
    border-radius:12px ;
 }
@@ -1036,19 +1072,8 @@ td{
    padding-left: 3%;
    list-style: none;
 }
-.Avl-Courses{
-   width: 98%;
-   font-size: 16px;
-   font-weight: 500;
-   padding-top: 1.5%;
-   padding-left: 3%;
-   list-style: none;
-}
 .Av-Courses li{
    font-size: 18px;
-}
-.Avl-Courses li{
-   font-size: 20px;
 }
 .cancel{
    padding-left: 85%;
@@ -1060,84 +1085,105 @@ td{
    padding-left: 25px;
 }
 #course1{
-   font-weight: 500;
-   width: 145px;
+   font-weight: 600;
    font-size: 20px;
    padding-left: 15px;
    border-radius: 4px;
 }
 #course2{
-   font-weight: 500;
-   width: 145px;
+   font-weight: 600;
    font-size: 20px;
    padding-left: 15px;
    border-radius: 4px;
 }
 #course3{
-   font-weight: 500;
-   width: 145px;
+   font-weight: 600;
    font-size: 20px;
    padding-left: 15px;
    border-radius: 4px;
 }
 #course4{
-   font-weight: 500;
-   width: 145px;
+   font-weight: 600;
    font-size: 20px;
    padding-left: 15px;
    border-radius: 4px;
 }
 #course5{
-   font-weight: 500;
-   width: 145px;
+   font-weight: 600;
    font-size: 20px;
    padding-left: 15px;
    border-radius: 4px;
 }
-
+#credit1{
+   font-weight: 600;
+   font-size: 18px;
+   border-radius: 4px;
+   text-align: center;
+}
+#credit2{
+   font-weight: 600;
+   border-radius: 4px;
+   font-size: 18px;
+   text-align: center;
+}
+#credit3{
+   font-weight: 600;
+   font-size: 18px;
+   border-radius: 4px;
+   text-align: center;
+}
+#credit4{
+   font-weight: 600;
+   font-size: 18px;
+   border-radius: 4px;
+   text-align: center;
+}
+#credit5{
+   font-weight: 600;
+   font-size: 18px;
+   border-radius: 4px;
+   text-align: center;
+}
 #grade1{
-   font-weight: 500;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #grade2{
-   font-weight: 500;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #grade3{
-   font-weight: 500;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #grade4{
-   font-weight: 500;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #grade5{
-   font-weight: 500;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #calc_button{
-   width: 97%;
-   height: 25px;
-   font-weight: 500;
+   width: 100%;
+   font-weight: 600;
    font-size: 18px;
    border-radius: 4px;
    text-align: center;
 }
 #calc_button:hover{
    color: #ffffff;
-   border-radius: 8px;
-   transition: 0.5s;
-   background-color: orange;
+   background-color: #9e0101;
 }
 
 .input-container {
@@ -1146,7 +1192,7 @@ td{
 }
 
 .calc-button-container {
-   width: calc(50% - 20px);
+   width: calc(50% - 20px); 
 }
 
 .output {
@@ -1159,9 +1205,9 @@ td{
    width: 80%;
 }
 
-.semesterR-report {
-   margin-left: 90px;
-   margin-right: 100px;
+.report-table {
+   margin-left: 80px;
+   margin-right: 20px;
    position: relative;
 }
 .additional-info {
@@ -1184,31 +1230,31 @@ td{
 .status-subcolumn {
    margin: 2px 0;
 }
-.semesterR-table {
+.semester-table {
    margin-top: 20px;
    border-collapse: collapse;
    width: 100%;
 }
-.semesterR-report th {
+.semester-table th {
    background-color: #f7ad47;
    padding: 8px;
    text-align: center;
 }
-.semesterR-table td, .semesterR-table th {
+.semester-table td, .semester-table th {
    border: 1px solid #ddd;
 }
-.semesterR-tit {
+.semester-title {
    text-align: center;
    font-size: 18px;
    font-weight: bold;
    margin-top: 20px;
 }
-.semesterR-inf {
+.semester-info {
    text-align: center;
    font-size: 18px;
 }
 
-.semesterR-container {
+.semester-container {
    text-align: center;
    margin-bottom: 20px;
 }
@@ -1233,7 +1279,48 @@ td{
    font-size: 22px;
  }
  
- .admin-form {
+ .admin-btn{
+   font-size: 20px;
+   border: 1px solid black;
+   border-radius: 9px;
+   width: 300px;
+   height: 35px;
+   color: #eee;
+   background-color: #f7ad47;
+}
+
+.admin-btn:hover {
+   background-color: #218496;
+   color: #11101d;
+   transition: 0.5s;
+   border-radius:12px ;
+}
+
+
+.Admin-data {
+   border: 2px solid rgb(255, 255, 255); width: 97%; height: 300px; margin-top: 0; margin-left: 2%;
+   width: 100%;
+   margin-top: 20px;
+   margin-left: 34px;
+   max-width: 1220px;
+   display: flex;
+   box-sizing: border-box;
+}
+
+.column A {
+   flex: 1; 
+   padding: 13px;
+   font-size: 20px; 
+}
+
+.column B {
+   margin: 0; 
+}
+
+.column span {
+   display: block; 
+}
+.admin-form {
    text-align: center; 
 }
 
@@ -1269,3 +1356,134 @@ td{
    display: flex;
    padding-left: 23%;
 }
+.Attendance-btn{
+   font-size: 20px;
+   border: 1px solid black;
+   border-radius: 9px;
+   width: 300px;
+   height: 35px;
+   color: #eee;
+   background-color: #f7ad47;
+}
+.Attendance-btn:hover{
+   background-color: #218496;
+   color: #11101d;
+   transition: 0.5s;
+   border-radius:12px ;
+}
+
+.attendance-table {
+   margin-left: 25px;
+   border: 2px solid #ffffff; 
+   padding: 15px;  
+}
+
+.attendance-heading {
+   margin-left: 50px; 
+}
+
+.Approve-button{
+   margin-left: 50px;
+   font-size: 20px;
+   border: 1px solid black;
+   border-radius: 9px;
+   width: 150px;
+   height: 35px;
+   color: #eee;
+   background-color: #f7ad47;
+}
+.Approve-button:hover{
+   background-color: #218496;
+   color: #11101d;
+   transition: 0.5s;
+   border-radius:12px ;
+}
+
+.Cancel-button{
+   margin-left: 90px;
+   font-size: 20px;
+   border: 1px solid black;
+   border-radius: 9px;
+   width: 150px;
+   height: 35px;
+   color: #eee;
+   background-color: #f7ad47;
+}
+.Cancel-button:hover{
+   background-color: #218496;
+   color: #11101d;
+   transition: 0.5s;
+   border-radius:12px ;
+}
+
+
+.file-upload-container {
+   margin-left: 30px; 
+}
+.Upload-button{
+   margin-left: 90px;
+   font-size: 20px;
+   border: 1px solid black;
+   border-radius: 9px;
+   width: 150px;
+   height: 35px;
+   color: #eee;
+   background-color: #f7ad47;
+}
+.Upload-button:hover{
+   background-color: #218496;
+   color: #11101d;
+   transition: 0.5s;
+   border-radius:12px ;
+}
+
+.Upload-txt {
+   margin-left: 40px;
+   font-size: 18px;
+   font-weight: bold;
+   color: #ffffff;
+   margin-bottom: 10px;
+}
+
+.excel-upload {
+   padding: 8px 12px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   background-color: #fff;
+   color: #333;
+   font-size: 14px;
+   cursor: pointer;
+   outline: none; 
+}
+
+.excel-upload:hover {
+   border-color: #218496;
+}
+
+.excel-upload:focus {
+   border-color: #000;
+}
+
+.grade-entry {
+   margin-left: 25px;
+   border: 2px solid #ffffff; 
+   padding: 15px;  
+ }
+ 
+
+ .submit-grade-btn {
+   font-size: 18px;
+   height: auto;
+   width: 150px;
+   background-color: #f7ad47;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.2s ease-in-out;
+ }
+ 
+ .submit-grade-btn:hover {
+   background-color: #218496;
+ }
+ 
