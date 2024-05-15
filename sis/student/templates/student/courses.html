@@ -6,9 +6,11 @@
       <span class="selector-Time">TimeSlots</span>
       <div class="selectors">
 
-          {% for form in formset %}
-            {{ form }}
+      <ul>
+          {% for course in courses %}
+              <li> {{ course }} </li>
           {% endfor %}
+      </ul>
       <!--<div class="select-menuA">
          <div class="select-btnA">
             <span class="sBtn-textA">Choose Your Courses</span>
